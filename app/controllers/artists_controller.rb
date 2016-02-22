@@ -17,23 +17,27 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist = Artist.find(params[:id])
+    find_artist(params[:id])
   end
 
   def edit
-    @artist = Artist.find(params[:id])
+    find_artist(params[:id])
   end
 
   def update
-    @artist = Artist.find(params[:id])
-    @artist.update(artist_params)
-    redirect_to @artist
+    artist = find_artist(params[:id])
+    artist.update(artist_params)
+    redirect_to artist
   end
 
   def destroy
-   @artist = Artist.find(params[:id])
-   @artist.destroy
+   artist = find_artist(params[:id])
+   artist.destroy
    redirect_to artists_path
+  end
+
+  def find_artist(id)
+    @artist = Artist.find(id)
   end
 
   private

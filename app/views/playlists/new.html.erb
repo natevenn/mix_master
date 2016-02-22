@@ -1,5 +1,8 @@
 <h1>Create new playlist</h1>
 <%= form_for(@playlist) do |f| %>
+
+  <%= render partial: "shared/errors", locals: { target: @playlist } %>
+
   <%= f.text_field :name %>
 
   <% Song.all.each do |song| %>
